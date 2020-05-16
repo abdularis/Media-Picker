@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.abdularis.mediapicker">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:requestLegacyExternalStorage="true"
+        tools:targetApi="q">
+        <activity android:name=".MediaPickerActivity" android:theme="@style/MediaSelectorTheme"/>
+        <activity android:name=".LocalImagePreviewActivity" android:theme="@style/ImagePreviewTheme"/>
+        <activity android:name=".LocalVideoPreviewActivity" android:theme="@style/VideoPreviewTheme"/>
+    </application>
+</manifest>
