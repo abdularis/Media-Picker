@@ -1,6 +1,7 @@
 package com.abdularis.mediapicker;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.CheckBox;
@@ -27,7 +28,7 @@ public class LocalImagePreviewActivity extends BaseLocalPreviewActivity {
 
         ImageView imageView = findViewById(R.id.photoView);
         Glide.with(this)
-                .load(media.getPath())
+                .load(Uri.parse(media.getUri()))
                 .into(imageView);
 
         mCheckBox = findViewById(R.id.check);

@@ -1,6 +1,5 @@
 package com.abdularis.mediapicker.data
 
-import android.net.Uri
 import java.io.Serializable
 
 data class Media(
@@ -11,7 +10,7 @@ data class Media(
     val thumbPath: String? = null,
     val mimeType: String? = null,
     val duration: Int = 0,
-    val uri: Uri
+    val uri: String
 ): Serializable {
     val isVideo: Boolean
         get() = mimeType?.startsWith("video/") ?: false

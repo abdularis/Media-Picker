@@ -60,7 +60,7 @@ public class MediaDataSource extends PositionalDataSource<Media> {
                     duration = mCursor.getInt(mCursor.getColumnIndex(MediaStore.Video.Media.DURATION));
 
                 Uri itemUri = ContentUris.withAppendedId(getBaseUri(mMediaType), Integer.parseInt(id));
-                Media media = new Media(id, path, width, height,null, mime, duration, itemUri);
+                Media media = new Media(id, path, width, height,null, mime, duration, itemUri.toString());
                 mediaList.add(media);
 
                 mCursor.moveToNext();

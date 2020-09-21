@@ -1,6 +1,7 @@
 package com.abdularis.mediapicker.data;
 
 import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -154,7 +155,7 @@ public class MediaAdapter extends PagedListAdapter<Media, MediaAdapter.ViewHolde
 
             mCheck.setChecked(isSelected);
             Glide.with(itemView.getContext())
-                    .load(media.getUri())
+                    .load(Uri.parse(media.getUri()))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(mImageView);
         }
