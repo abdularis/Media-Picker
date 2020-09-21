@@ -152,13 +152,9 @@ public class MediaAdapter extends PagedListAdapter<Media, MediaAdapter.ViewHolde
                 mBottomShade.setVisibility(View.GONE);
             }
 
-            String path = media.getThumbPath();
-            if (path == null)
-                path = media.getPath();
-
             mCheck.setChecked(isSelected);
             Glide.with(itemView.getContext())
-                    .load(path)
+                    .load(media.getUri())
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(mImageView);
         }

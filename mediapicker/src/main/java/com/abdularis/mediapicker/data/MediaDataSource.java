@@ -1,10 +1,10 @@
 package com.abdularis.mediapicker.data;
 
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.paging.PositionalDataSource;
@@ -59,7 +59,8 @@ public class MediaDataSource extends PositionalDataSource<Media> {
                 if (mMediaType == MEDIA_TYPE_VIDEO)
                     duration = mCursor.getInt(mCursor.getColumnIndex(MediaStore.Video.Media.DURATION));
 
-                Media media = new Media(id, path, width, height,null, mime, duration);
+                Uri itemUri = ContentUris.withAppendedId(getBaseUri(mMediaType), Integer.parseInt(id));
+                Media media = new Media(id, path, width, height,null, mime, duration, itemUri);
                 mediaList.add(media);
 
                 mCursor.moveToNext();
@@ -98,12 +99,15 @@ public class MediaDataSource extends PositionalDataSource<Media> {
             };
         }
 
-        Uri uri = mediaType == MEDIA_TYPE_IMAGE ?
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI :
-                MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-
+        Uri uri = getBaseUri(mediaType);
 
         String sort = MediaStore.MediaColumns.DATE_MODIFIED + " DESC";
         return mContentResolver.query(uri, projection, null, null, sort);
+    }
+
+    private Uri getBaseUri(int mediaType) {
+        return mediaType == MEDIA_TYPE_IMAGE ?
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI :
+                MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
     }
 }
